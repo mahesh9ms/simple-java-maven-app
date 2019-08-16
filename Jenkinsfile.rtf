@@ -1,16 +1,16 @@
 
-pipeline \{\
-    agent \{\
-        docker \{\
-            image \cf4 \cb5 '\cf6 maven:3-alpine\cf4 '\cf2 \cb3  \
-            args \cf4 \cb5 '\cf6 -v /root/.m2:/root/.m2\cf4 '\cf2 \cb3  \
-        \}\
-    \}\
-    stages \{\
-        stage(\cf4 \cb5 '\cf6 Build\cf4 '\cf2 \cb3 ) \{ \
-            steps \{\
-                sh \cf4 \cb5 '\cf6 mvn -B -DskipTests clean package\cf4 '\cf2 \cb3  \
-            \}\
-        \}\
-    \}\
-\}}
+pipeline {
+    agent {
+        docker {
+            image maven:3-alpine
+            args \cf4 \cb5 '\cf6 -v /root/.m2:/root/.m2
+        }
+    }
+    stages {
+        stage(Build ){ 
+            steps {
+                mvn -B -DskipTests clean package
+            }
+        }
+    }
+}}
